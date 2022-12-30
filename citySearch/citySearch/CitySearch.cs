@@ -18,7 +18,7 @@ namespace citySearch
                 throw new Exception("Search text must be provided");
             }
 
-            return null;
+            return new string[]{};
         }
     }
 }
