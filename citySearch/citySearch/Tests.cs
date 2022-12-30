@@ -12,5 +12,13 @@ namespace citySearch
             var ex = Assert.Throws<Exception>(() => citySearch.Search(""));
             Assert.Equal("Search text must be provided", ex.Message);
         }
+        
+        [Fact]
+        public void ShouldReturnNoResultWhenTextIsFewerThan2Chars()
+        {
+            var citySearch = new CitySearch();
+            var result = citySearch.Search("a");
+            Assert.Equal(0, result.Length);
+        }
     }
 }
