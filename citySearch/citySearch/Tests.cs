@@ -6,9 +6,11 @@ namespace citySearch
     public class Tests
     {
         [Fact]
-        public void ShouldReturnNoResultWhenTextIsFewerThan2Chars()
+        public void ShouldThrowExceptionGivenNullText()
         {
-            Assert.True(true);
+            var citySearch = new CitySearch();
+            var ex = Assert.Throws<Exception>(() => citySearch.Search(""));
+            Assert.Equal("Search text must be provided", ex.Message);
         }
     }
 }
