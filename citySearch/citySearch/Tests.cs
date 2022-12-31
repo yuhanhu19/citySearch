@@ -32,5 +32,16 @@ namespace citySearch
             Assert.True(result.Contains("Vancouver"));
             
         }
+        
+        [Fact]
+        public void ShouldReturnSearchResultWhenTextCaseVary()
+        {
+            var citySearch = new CitySearch();
+            var result = citySearch.Search("vA");
+            Assert.Equal(2, result.Length);
+            Assert.True(result.Contains("Valencia"));
+            Assert.True(result.Contains("Vancouver"));
+            
+        }
     }
 }
