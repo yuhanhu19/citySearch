@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 namespace citySearch
 {
@@ -29,7 +30,8 @@ namespace citySearch
 
         private string[] SearchCity(string text)
         {
-            return _cityNames.Where(cityName => cityName.StartsWith(text)).ToArray();
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            return _cityNames.Where(cityName => cityName.StartsWith(textInfo.ToTitleCase(text))).ToArray();
         }
     }
 }
