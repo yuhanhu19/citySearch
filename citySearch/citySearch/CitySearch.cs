@@ -20,12 +20,12 @@ namespace citySearch
                 throw new Exception("Search text must be provided");
             }
 
-            if (text.Length >= 2)
+            if (text.Equals("*"))
             {
-                return SearchCity(text);
+                return _cityNames.ToArray();
             }
 
-            return new string[] { };
+            return text.Length >= 2 ? SearchCity(text) : new string[] { };
         }
 
         private string[] SearchCity(string text)
