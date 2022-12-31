@@ -30,8 +30,11 @@ namespace citySearch
 
         private string[] SearchCity(string text)
         {
-            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-            return _cityNames.Where(cityName => cityName.StartsWith(textInfo.ToTitleCase(text))).ToArray();
+            var textInfo = new CultureInfo("en-US", false).TextInfo;
+            var startsWithList = _cityNames.Where(cityName => cityName.StartsWith(textInfo.ToTitleCase(text))).ToArray();
+            var containsList = _cityNames.Where(cityName => cityName.Contains(text.ToLower())).ToArray();
+
+            return startsWithList.Concat(containsList).ToArray();
         }
     }
 }
