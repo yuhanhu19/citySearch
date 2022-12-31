@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -49,6 +50,20 @@ namespace citySearch
             var citySearch = new CitySearch();
             var result = citySearch.Search("ape");
             Assert.Equal("Budapest", string.Join(",", result));
+        }
+        
+        [Fact]
+        public void ShouldReturnAllCityNamesGivenAsterisk()
+        {
+            IList<string> cityNames = new List<string>
+            {
+                "Paris", "Budapest", "Skopje", "Rotterdam", "Valencia", "Vancouver", "Amsterdam", "Vienna", "Sydney",
+                "New York City", "London", "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul"
+            };
+            var citySearch = new CitySearch();
+            var result = citySearch.Search("*");
+            Assert.Equal(16, result.Length);
+            Assert.True(cityNames.All(cityName => result.Contains(cityName)));
         }
     }
 }
