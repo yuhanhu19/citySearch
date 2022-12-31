@@ -41,7 +41,14 @@ namespace citySearch
             Assert.Equal(2, result.Length);
             Assert.True(result.Contains("Valencia"));
             Assert.True(result.Contains("Vancouver"));
-            
+        }
+        
+        [Fact]
+        public void ShouldReturnSearchResultGivenPartialTextInput()
+        {
+            var citySearch = new CitySearch();
+            var result = citySearch.Search("ape");
+            Assert.Equal("Budapest", string.Join(",", result));
         }
     }
 }
